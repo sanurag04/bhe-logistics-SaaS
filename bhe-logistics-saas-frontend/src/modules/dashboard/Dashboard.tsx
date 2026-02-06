@@ -1,54 +1,30 @@
 /** @format */
 
-import { Link } from 'react-router-dom';
-import CreateShipmentCard from './components/CreateShipmentCard';
-function Dashboard() {
+import ActivationBanner from './components/ActivationBanner';
+import ActionRequiredCard from './components/ActionRequiredCard';
+import UpcomingPickups from './components/UpcomingPickups';
+import WhatsNew from './components/WhatsNew';
+import QuickLinks from './components/QuickLinks';
+
+const Dashboard: React.FC = () => {
 	return (
-		<div className="space-y-8">
-			<header>
-				<h1 className="text-2xl font-semibold text-slate-900">Dashboard</h1>
-			</header>
-			<section className="space-y-4">
-				<h2 className="text-lg font-semibold text-slate-900">
-					Create Shipment
-				</h2>
-				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-					<CreateShipmentCard
-						title="Forward"
-						description="Create a forward shipment"
-					/>
-					<CreateShipmentCard title="Bulk" description="Book bulk shipments" />
-					<CreateShipmentCard
-						title="Reverse"
-						description="Initiate a reverse shipment"
-					/>
-					<CreateShipmentCard title="Pickup" description="Schedule a pickup" />
+		<div className="mx-auto max-w-7xl px-6 py-6">
+			<div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+				{/* LEFT */}
+				<div className="space-y-6 lg:col-span-9">
+					<ActivationBanner />
+					<ActionRequiredCard />
+					<UpcomingPickups />
 				</div>
-			</section>
-			<section className="space-y-2">
-				<h2 className="text-lg font-semibold text-slate-900">
-					Action Required
-				</h2>
-				<div>Placeholder</div>
-			</section>
-			<section className="space-y-2">
-				<h2 className="text-lg font-semibold text-slate-900">Performance</h2>
-				<div>Placeholder</div>
-			</section>
-			<section className="space-y-2">
-				<h2 className="text-lg font-semibold text-slate-900">
-					Information Center
-				</h2>
-				<div>
-					<Link
-						className="text-sm font-medium text-slate-700 hover:text-slate-900"
-						to="/franchise/information-center/rate-calculator">
-						Rate Calculator
-					</Link>
+
+				{/* RIGHT */}
+				<div className="space-y-6 lg:col-span-3">
+					<WhatsNew />
+					<QuickLinks />
 				</div>
-			</section>
+			</div>
 		</div>
 	);
-}
+};
 
 export default Dashboard;

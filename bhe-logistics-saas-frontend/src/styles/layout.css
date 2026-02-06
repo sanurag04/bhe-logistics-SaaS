@@ -1,0 +1,72 @@
+/* ===== Root Layout Fix ===== */
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Main app flex container */
+.app-root {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Right side wrapper (after sidebar) */
+.app-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  max-width: none;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Header area */
+.app-header {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Main page content area */
+.app-main {
+  flex-grow: 1;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  overflow-x: auto;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Safety: prevent accidental container constraints */
+.MuiContainer-root {
+  max-width: none !important;
+}
+
+/* Default text color fix for MUI */
+.MuiTypography-root {
+  color: #fff
+}
+
+.css-1koi6vw{
+    padding: 90px 15px !important;
+    margin-top: 0% !important;
+}
+.custom-css-1miy0lu-MuiTypography-root{
+    color: #ffa500 !important;
+    margin-top: 1.5rem !important;
+    font-weight: 600 !important;
+
+    
+}

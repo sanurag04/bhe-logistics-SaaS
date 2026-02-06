@@ -15,32 +15,41 @@ function Login() {
 	const login = useAuthStore((state) => state.login);
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		setError(null);
-		setIsLoading(true);
-		try {
-			const response = await api.post('/auth/login', {
-				email,
-				password,
-			});
-			const token = response.data.data?.access_token as string | undefined;
-			if (!token) {
-				setError('Login failed. Please try again.');
-				return;
-			}
-			login(token);
-			const { role } = useAuthStore.getState();
-			if (role === 'SUPER_ADMIN') {
-				navigate('/admin', { replace: true });
-				return;
-			}
-			navigate('/franchise', { replace: true });
-		} catch {
-			setError('Login failed. Please check your credentials.');
-		} finally {
-			setIsLoading(false);
+	event.preventDefault();
+	setError(null);
+	setIsLoading(true);
+
+	try {
+		const response = await api.post('/auth/login', {
+			email,
+			password,
+		});
+		console.log('Login response:', response);
+		const token = response.data.data?.access_token as string | undefined;
+		const role = response.data.data.user?.role as string | undefined;
+
+		if (!token) {
+			setError('Login failed. Please try again.');
+			return;
 		}
-	};
+
+		// ✅ Store token + role (localStorage via Zustand)
+		login(token, role);
+
+		// ✅ Use role from response (not store)
+		if (role === 'SUPER_ADMIN') {
+			navigate('/admin', { replace: true });
+			return;
+		}
+
+		navigate('/franchise', { replace: true });
+	} catch {
+		setError('Login failed. Please check your credentials.');
+	} finally {
+		setIsLoading(false);
+	}
+};
+
 
 	return (
 		<div
@@ -61,16 +70,20 @@ function Login() {
 			<div className="w-full max-w-md px-4">
 				<div
 					className="rounded-2xl bg-white shadow-2xl min-h-[450px] flex flex-col"
-					style={{ padding: '1rem' }}>
-					{/* Header – Logo only */}
-					<div className="flex items-center justify-center px-8 pt-10 pb-6">
-						<div style={{display:"grid"}}>
-						<img
-							src="/bhe-logo.png"
-							alt="BHE Logistics"
-							className="w-[70%] h-auto object-contain"
-						/>
-						<p style={{color:"#000"}}>Your Trusted Logistics Partner</p></div>
+					style={{ padding: '1rem' }}> 
+					<div className="w-full flex justify-center py-4">
+						<div
+							className="flex items-center justify-center overflow-hidden"
+							style={{ 
+								height: '170px',
+								width: '250px', 
+							}}>
+							<img
+								src="/logo.png"
+								alt="BHE Logistics"
+								className="block h-full w-auto object-contain"
+							/>
+						</div>
 					</div>
 
 					{/* Body */}
@@ -84,7 +97,7 @@ function Login() {
 								gap: '1.5rem',
 							}}>
 							{error && (
-								<div style={{marginLeft:"1rem"}} className="rounded-lg border border-red-100 px-4 py-3 text-sm text-red-600">
+								<div className="rounded-lg border border-red-100 px-4 py-3 text-sm text-red-600">
 									{error}
 								</div>
 							)}
@@ -161,6 +174,7 @@ function Login() {
 							<button
 								type="submit"
 								disabled={isLoading}
+								style={{color:"#fff"}}
 								className="w-full rounded-lg bg-[#1d1f2a] py-3.5 text-sm font-bold text-white hover:bg-black transition disabled:opacity-60">
 								{isLoading ? 'Signing in…' : 'Continue'}
 							</button>

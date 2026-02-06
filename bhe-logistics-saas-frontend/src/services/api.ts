@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-	const { token } = useAuthStore.getState();
+	const token = localStorage.getItem('access_token');
 	if (token) {
 		config.headers = new AxiosHeaders(config.headers);
 		config.headers.set('Authorization', `Bearer ${token}`);
@@ -28,3 +28,22 @@ api.interceptors.response.use(
 );
 
 export default api;
+
+
+// import axios from 'axios';
+
+// const api = axios.create({
+// 	baseURL: import.meta.env.VITE_API_BASE_URL,
+// });
+
+// api.interceptors.request.use((config) => {
+// 	const token = localStorage.getItem('access_token');
+
+// 	if (token && config.headers) {
+// 		config.headers.Authorization = `Bearer ${token}`;
+// 	}
+
+// 	return config;
+// });
+
+// export default api;
