@@ -87,15 +87,14 @@ export default function Sidebar() {
 		borderRadius: '10px',
 		mx: 1,
 	};
-const navigate = useNavigate();
-const [manualOpenLabel, setManualOpenLabel] = useState<string | null>(null);
+	const navigate = useNavigate();
+	const [manualOpenLabel, setManualOpenLabel] = useState<string | null>(null);
 
-const toggleMenu = (label: string) => {
-	setManualOpenLabel((prev) => (prev === label ? null : label));
-};
+	const toggleMenu = (label: string) => {
+		setManualOpenLabel((prev) => (prev === label ? null : label));
+	};
 
-
-const { role } = useAuthStore();
+	const { role } = useAuthStore();
 	const menuItems = role === 'SUPER_ADMIN' ? superAdminMenu : franchiseMenu;
 
 	const {
@@ -106,10 +105,9 @@ const { role } = useAuthStore();
 		togglePin,
 	} = useUiStore();
 
-const drawerWidth = isSidebarOpen ? OPEN_WIDTH : CLOSED_WIDTH;
+	const drawerWidth = isSidebarOpen ? OPEN_WIDTH : CLOSED_WIDTH;
 
-
-return (
+	return (
 		<Drawer
 			variant="permanent"
 			onMouseEnter={() => !isSidebarPinned && openSidebar()}
@@ -169,7 +167,11 @@ return (
 			</Box>
 
 			{/* 🔹 MENU */}
-			<Box sx={{ mt: 1 }}>
+			<Box
+				sx={{
+					mt: 1,
+					fontFamily: '"IBM Plex Sans", ui-sans-serif, system-ui',
+				}}>
 				<List>
 					{menuItems.map((item) => {
 						const hasChildren = !!item.children?.length;
@@ -187,10 +189,12 @@ return (
 									}}
 									sx={{
 										px: 2,
+										borderRadius: '8px',
+										mx: 1,
 										borderBottom: '1px solid rgba(255,255,255,0.08)',
 										my:
 											isActiveRoute(item.path) || isChildActive(item.children)
-												? 0.6  
+												? 0.6
 												: 0,
 										...(isActiveRoute(item.path) || isChildActive(item.children)
 											? activeStyles
@@ -204,11 +208,7 @@ return (
 											sx={{
 												color: '#fff',
 												minWidth: 40,
-												// color:
-												// 	isActiveRoute(item.path) ||
-												// 	isChildActive(item.children)
-												// 		? '#000'
-												// 		: '#fff',
+												fontSize: '18px',  
 											}}>
 											{iconMap[item.icon]}
 										</ListItemIcon>
@@ -224,20 +224,15 @@ return (
 												<ListItemText
 													primary={item.label}
 													primaryTypographyProps={{
-														fontWeight:
-															isActiveRoute(item.path) ||
-															isChildActive(item.children)
-																? 500
-																: 400,
-															 
-														// color:
-														// 	isActiveRoute(item.path) ||
-														// 	isChildActive(item.children)
-														// 		? '#000'
-														// 		: '#fff',
+														fontFamily:
+															'"IBM Plex Sans", ui-sans-serif, system-ui',
+														fontSize: '12.25px',
+														lineHeight: '17.5px',
+														fontWeight: 500,
 													}}
 												/>
 											</Tooltip>
+
 											{hasChildren &&
 												(isOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />)}
 										</>
@@ -251,14 +246,6 @@ return (
 											<ListItemButton
 												key={child.label}
 												onClick={() => child.path && navigate(child.path)}
-												// sx={{
-												// 	pl: 4.5,
-												// 	py: 0.8,
-												// 	color: '#fff',
-												// 	'&:hover': {
-												// 		backgroundColor: 'rgba(255,255,255,0.08)',
-												// 	},
-												// }}
 												sx={{
 													pl: 2,
 													py: 0.8,
@@ -266,14 +253,11 @@ return (
 													borderRadius: '8px',
 													color: '#fff',
 													borderBottom: '1px solid rgba(255,255,255,0.08)',
-													// color: isActiveRoute(child.path) ? '#000' : '#cbd5f5',
 													backgroundColor: isActiveRoute(child.path)
 														? 'rgba(255,255,255,0.08)'
 														: 'transparent',
 													'&:hover': {
-														backgroundColor: isActiveRoute(child.path)
-															? 'rgba(255,255,255,0.08)'
-															: 'rgba(255,255,255,0.08)',
+														backgroundColor: 'rgba(255,255,255,0.08)',
 													},
 												}}>
 												{child.icon && (
@@ -281,14 +265,8 @@ return (
 														sx={{
 															minWidth: 32,
 															color: '#cbd5f5',
-														}}
-														// sx={{
-														// 	minWidth: 32,
-														// 	color: isActiveRoute(child.path)
-														// 		? '#000'
-														// 		: '#cbd5f5',
-														// }}
-													>
+															fontSize: '16px',  
+														}}>
 														{iconMap[child.icon]}
 													</ListItemIcon>
 												)}
@@ -297,9 +275,11 @@ return (
 													<ListItemText
 														primary={child.label}
 														primaryTypographyProps={{
-															fontSize: 13,
-															// fontWeight: isActiveRoute(child.path) ? 600 : 400,
-															//  color: isActiveRoute(child.path) ? '#000' : '#cbd5f5',
+															fontFamily:
+																'"IBM Plex Sans", ui-sans-serif, system-ui',
+															fontSize: '12.25px',
+															lineHeight: '17.5px',
+															fontWeight: 500,
 														}}
 													/>
 												</Tooltip>
