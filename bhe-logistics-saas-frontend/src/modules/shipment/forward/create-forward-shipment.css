@@ -184,5 +184,37 @@
     justify-content: space-between;
 }
 
+/* Timeline wrapper */
+.cfs-timeline {
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  margin-top: 6px; /* aligns orange dot with Select */
+}
 
+/* Content column */
+.cfs-content {
+  display: flex;
+  flex-direction: column;
+}
 
+/* Seller row background (highlighted) */
+.cfs-seller-row {
+  background: #f8fafc;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* Customer row (plain) */
+.cfs-customer-row {
+  margin-top: 12px;
+}
+
+/* Existing link button – keep text left aligned */
+.cfs-link-btn {
+  justify-content: flex-start !important;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2563eb;
+  padding: 10px 12px;
+}

@@ -1,0 +1,30 @@
+/* Header */
+.app-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.app-dialog-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.app-dialog-header p {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Content */
+.app-dialog-content {
+  padding: 24px;
+  padding-top: 16px !important;
+}
+
+/* Backdrop blur */
+.app-dialog-backdrop {
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+}

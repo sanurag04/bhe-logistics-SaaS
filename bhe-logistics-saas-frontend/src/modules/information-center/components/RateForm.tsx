@@ -96,7 +96,7 @@ export default function RateForm({ onSubmit }: Props) {
 			<Divider sx={{ mb: 2 }} />
 
 			{/* PINCODES */}
-			<Typography fontSize={13} fontWeight={500} mb={1} color='text.primary'>
+			<Typography fontSize={13} fontWeight={500} mb={1} color="text.primary">
 				Pickup and delivery pincode
 			</Typography>
 
@@ -176,13 +176,17 @@ export default function RateForm({ onSubmit }: Props) {
 						<MenuItem value="Plastic cover/Flyer">
 							<Stack direction="row" spacing={1} alignItems="center">
 								<DescriptionOutlinedIcon fontSize="small" />
-								<Typography fontSize={12} color="text.primary">Plastic cover/Flyer</Typography>
+								<Typography fontSize={12} color="text.primary">
+									Plastic cover/Flyer
+								</Typography>
 							</Stack>
 						</MenuItem>
 						<MenuItem value="Cardboard Box">
 							<Stack direction="row" spacing={1} alignItems="center">
 								<Inventory2OutlinedIcon fontSize="small" />
-								<Typography fontSize={12} color="text.primary">Cardboard Box</Typography>
+								<Typography fontSize={12} color="text.primary">
+									Cardboard Box
+								</Typography>
 							</Stack>
 						</MenuItem>
 					</Select>
@@ -222,7 +226,7 @@ export default function RateForm({ onSubmit }: Props) {
 			</Typography>
 
 			{/* DIMENSIONS */}
-			<Typography fontSize={12} fontWeight={500} mb={1} color='text.primary'>
+			<Typography fontSize={12} fontWeight={500} mb={1} color="text.primary">
 				Package Dimensions
 			</Typography>
 
@@ -260,7 +264,7 @@ export default function RateForm({ onSubmit }: Props) {
 			</div>
 
 			{/* PAYMENT MODE */}
-			<Typography fontSize={12} fontWeight={500} mb={0.5} color='text.primary'>
+			<Typography fontSize={12} fontWeight={500} mb={0.5} color="text.primary">
 				Payment Mode
 			</Typography>
 
@@ -268,12 +272,20 @@ export default function RateForm({ onSubmit }: Props) {
 				<FormControlLabel
 					value="PREPAID"
 					control={<Radio size="small" />}
-					label={<Typography fontSize={12} color="text.primary">Prepaid</Typography>}
+					label={
+						<Typography fontSize={12} color="text.primary">
+							Prepaid
+						</Typography>
+					}
 				/>
 				<FormControlLabel
 					value="COD"
 					control={<Radio size="small" />}
-					label={<Typography fontSize={12} color="text.primary">Cash on Delivery (COD)</Typography>}
+					label={
+						<Typography fontSize={12} color="text.primary">
+							Cash on Delivery (COD)
+						</Typography>
+					}
 				/>
 			</RadioGroup>
 		</Box>
