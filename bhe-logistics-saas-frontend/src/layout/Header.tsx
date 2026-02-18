@@ -16,7 +16,7 @@ export default function Header() {
 				height: HEADER_HEIGHT,
 				width: '100%',
 				left: 0,
-				backgroundColor: '#eaf3fc',
+				backgroundColor: '#0f172a',
 				color: '#000',
 				zIndex: 1201,
 			}}>

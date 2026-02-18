@@ -257,15 +257,14 @@ const CreateForwardShipment = () => {
 										</div>
 									</div>
 
-									{/* BOTTOM ROW: Helper Text */}
-									<div className="cfs-value-row-bottom">
+ 									<div className="cfs-value-row-bottom">
 										<Typography
 											sx={{ color: 'black', fontSize: '12px' }}
 											className="cfs-helper-text">
 											Total value without tax
 										</Typography>
-										<span /> {/* spacer */}
-										<span /> {/* spacer */}
+										<span />  
+										<span /> 
 										<Typography
 											sx={{
 												color: 'black',
@@ -277,8 +276,7 @@ const CreateForwardShipment = () => {
 										</Typography>
 									</div>
 
-									{/* Fragile Checkbox */}
-									<Grid size={{ xs: 12 }}>
+ 									<Grid size={{ xs: 12 }}>
 										<FormControlLabel
 											control={<Checkbox size="small" />}
 											label="My package contains fragile items"
