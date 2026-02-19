@@ -11,9 +11,9 @@ import Login from '../../modules/auth/Login';
 import Dashboard from '../../modules/dashboard/Dashboard';
 import RateCalculator from '../../modules/information-center/RateCalculator';
 import AdminDashboard from '../../modules/admin/AdminDashboard';
-import ForwardShipment from '../../modules/shipment/forward/CreateForwardShipment';
-import ReverseShipment from '../../modules/shipment/reverse/ReverseShipment';
-import DomesticPickup from '../../modules/shipment/pickup-requests/DomesticPickup';
+import ForwardShipment from '../../modules/shipment/forward-shipment/CreateForwardShipment';
+import ReverseShipment from '../../modules/shipment/reverse-shipment/CreateReverseShipment';
+import DomesticPickup from '../../modules/shipment/pickup-requests/PickupRequestPage';
 
 function AppRoutes() {
 	return (
