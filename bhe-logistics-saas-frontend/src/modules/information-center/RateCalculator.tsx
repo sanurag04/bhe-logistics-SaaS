@@ -2,14 +2,12 @@
 
 import { useState } from 'react';
 import RateForm, { type RateFormValues } from './components/RateForm';
- import rateService, { type CarrierRate } from '../shipment/services/rate.service';
+import rateService from '../shipment/services/rate.service';
 
 import '../../styles/RateCalculatorStyle/rate-calculator.css';
 import RateSummaryPanel from './components/RateSummaryPanel';
 
-
 function RateCalculator() {
-	const [results, setResults] = useState<CarrierRate[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 
@@ -23,7 +21,7 @@ function RateCalculator() {
 				weight: values.weight,
 				dimensions: values.dimensions,
 			});
-			setResults(rates);
+			void rates;
 		} catch {
 			setError('Unable to fetch rates. Please try again.');
 		} finally {
@@ -43,7 +41,7 @@ function RateCalculator() {
 				<div className="rate-right-panel">
 					{isLoading && <p className="loading-text">Loading rates...</p>}
 					{error && <p className="error-text">{error}</p>}
- 					<RateSummaryPanel />
+					<RateSummaryPanel />
 				</div>
 			</div>
 		</div>

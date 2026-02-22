@@ -15,8 +15,8 @@ export const franchiseMenu: SidebarMenuItem[] = [
 		label: 'Shipments & Pickups',
 		icon: 'shipment',
 		children: [
-			{ label: 'Create Forward Shipment', icon: 'createShipment', path: '/fr-home/shipments/forward/create' },
-			{ label: 'Create Reverse Shipment', icon: 'reverseShipment', path: '/fr-home/shipments/reverse/create' },
+			{ label: 'Forward Shipment', icon: 'createShipment', path: '/fr-home/shipments/forward/create' },
+			{ label: 'Reverse Shipment', icon: 'reverseShipment', path: '/fr-home/shipments/reverse/create' },
 			{ label: 'Pickup Requests', icon: 'pickupRequests', path: '/fr-home/shipments/pickup-requests/domestic' },
 		],
 	},

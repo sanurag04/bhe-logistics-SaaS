@@ -65,9 +65,20 @@ const CostRow = ({ label, value, bold = false }: CostRowProps) => (
 const CreateForwardShipment = () => {
 	const [openSeller, setOpenSeller] = useState(false);
 	const [openCustomer, setOpenCustomer] = useState(false);
+	const [packageType, setPackageType] = useState('Select');
+	const [paymentType, setPaymentType] = useState('PREPAID');
+	const [itemCount, setItemCount] = useState<number>(0);
+
+	const handleIncrement = () => {
+		setItemCount((prev) => prev + 1);
+	};
+
+	const handleDecrement = () => {
+		setItemCount((prev) => (prev > 0 ? prev - 1 : 0));
+	};
 
 	// const [boxOption, setBoxOption] = useState<number | 'more' | null>(null);
-	const [customBoxCount, setCustomBoxCount] = useState<number | ''>('');
+	// const [customBoxCount, setCustomBoxCount] = useState<number | ''>('');
 
 	// 	-------Use this logic when submitting the form--------
 	// 	const finalBoxCount =
@@ -143,16 +154,22 @@ const CreateForwardShipment = () => {
 									<Typography className="cfs-field-label cfs-title">
 										Item Count
 									</Typography>
+
 									<Box className="cfs-counter-input">
-										<IconButton size="small">
+										<IconButton
+											size="small"
+											onClick={handleDecrement}
+											disabled={itemCount === 0}>
 											<RemoveIcon />
 										</IconButton>
+
 										<Typography
 											className="cfs-counter-value"
 											sx={{ color: 'black' }}>
-											0
+											{itemCount}
 										</Typography>
-										<IconButton size="small">
+
+										<IconButton size="small" onClick={handleIncrement}>
 											<AddIcon />
 										</IconButton>
 									</Box>
@@ -257,14 +274,14 @@ const CreateForwardShipment = () => {
 										</div>
 									</div>
 
- 									<div className="cfs-value-row-bottom">
+									<div className="cfs-value-row-bottom">
 										<Typography
 											sx={{ color: 'black', fontSize: '12px' }}
 											className="cfs-helper-text">
 											Total value without tax
 										</Typography>
-										<span />  
-										<span /> 
+										<span />
+										<span />
 										<Typography
 											sx={{
 												color: 'black',
@@ -276,9 +293,9 @@ const CreateForwardShipment = () => {
 										</Typography>
 									</div>
 
- 									<Grid size={{ xs: 12 }}>
+									<Grid size={{ xs: 12 }}>
 										<FormControlLabel
-											control={<Checkbox size="small" />}
+											control={<Checkbox size="small" color="primary" />}
 											label="My package contains fragile items"
 											sx={{
 												fontSize: 12,
@@ -343,11 +360,12 @@ const CreateForwardShipment = () => {
 									<Select
 										fullWidth
 										size="small"
-										value="PREPAID"
+										value={paymentType}
+										onChange={(e) => setPaymentType(e.target.value)}
 										sx={{
 											height: '2.3rem',
 											'& .MuiSelect-select': {
-												fontSize: '12px !important',
+												fontSize: '12px',
 												fontWeight: 500,
 												fontFamily: '"IBM Plex Sans", ui-sans-serif, system-ui',
 											},
@@ -464,16 +482,16 @@ const CreateForwardShipment = () => {
 							</Typography>
 
 							<Box display="flex" alignItems="center" gap={1} width="100%">
-								{/* Radios (fixed width) */}
+								{' '}
 								<RadioGroup row sx={{ flexShrink: 0 }}>
 									{[1, 2, 3, 4, 5].map((v) => (
 										<FormControlLabel
-										key={v}
-										value={v}
-										label={v}
-										control={<Radio />}
+											key={v}
+											value={v}
+											label={v}
+											control={<Radio color="primary" />}
 											sx={{
-												mr: 1, 
+												mr: 1,
 												'& .MuiFormControlLabel-label': {
 													color: '#000',
 													fontWeight: 500,
@@ -482,121 +500,25 @@ const CreateForwardShipment = () => {
 										/>
 									))}
 								</RadioGroup>
-
-								{/* Auto-expanding input */}
-								<TextField
-									type="number"
-									size="small"
-									placeholder="6+"
-									value={customBoxCount}
-									onChange={(e) => setCustomBoxCount(Number(e.target.value))}
-									inputProps={{ min: 6 }}
-									sx={{
-										flex: 1, // ✅ THIS is what was missing
-										minWidth: 0, // ✅ IMPORTANT for flexbox
-										backgroundColor: '#fff',
-										borderRadius: '6px',
-										'& .MuiInputBase-input': {
-											textAlign: 'center',
-											fontWeight: 500,
-											padding: '6px 8px',
-										},
-									}}
-								/>
 							</Box>
-
-							{/* <RadioGroup
-								row
-								value={boxOption}
-								onChange={(e) =>
-									setBoxOption(
-										e.target.value === 'more' ? 'more' : Number(e.target.value),
-									)
-								}
-								sx={{ alignItems: 'center', gap: 1 }}>
-								{[1, 2, 3, 4, 5].map((v) => (
-									<FormControlLabel
-										key={v}
-										value={v}
-										label={v}
-										control={
-											<Radio
-												sx={{
-													color: '#000',
-													'&.Mui-checked': { color: '#000' },
-												}}
-											/>
-										}
-										sx={{
-											'& .MuiFormControlLabel-label': {
-												color: '#000',
-												fontWeight: 500,
-											},
-										}}
-									/>
-								))}
-
- 								<FormControlLabel
-									value="more"
-									control={
-										<Radio
-											sx={{
-												color: '#000',
-												'&.Mui-checked': { color: '#000' },
-											}}
-										/> 
-									}
-									sx={{
-											'& .MuiFormControlLabel-label': {
-												color: '#000',
-												fontWeight: 500,
-												fontSize: 12,
-											},
-										}}
-									label="more than 5"
-								/>
-
- 								{boxOption === 'more' && (
-									<TextField
-										type="number"
-										size="small"
-										value={customBoxCount} 
-										onChange={(e) => setCustomBoxCount(Number(e.target.value))}
-										inputProps={{
-											min: 6,
-											style: { textAlign: 'center' },
-										}}
-										sx={{
-											width: 80,
-											color: '#000',
-											'& .MuiInputBase-input': {
-												padding: '3px 0',
-											},
-											ml: 1,
-											'& input': {
-												fontWeight: 500,
-											},
-										}}
-									/>
-								)}
-							</RadioGroup> */}
 
 							<Grid size={{ xs: 12 }}>
 								<Select
 									fullWidth
 									size="small"
-									value="Select"
+									value={packageType}
+									onChange={(e) => setPackageType(e.target.value)}
 									sx={{
-										color: '#000 !important',
 										height: '2.3rem',
 										'& .MuiSelect-select': {
-											fontSize: '12px !important',
-											color: '#000 !important',
+											fontSize: '12px',
 											fontWeight: 500,
 											fontFamily: '"IBM Plex Sans", ui-sans-serif, system-ui',
 										},
 									}}>
-									<MenuItem value="Select">Select Package Type</MenuItem>
+									<MenuItem value="Select" disabled>
+										Select Package Type
+									</MenuItem>
 									<MenuItem value="Plastic">Plastic cover/Flyer</MenuItem>
 									<MenuItem value="Cardboard">Cardboard Box</MenuItem>
 								</Select>

@@ -14,6 +14,7 @@ import AdminDashboard from '../../modules/admin/AdminDashboard';
 import ForwardShipment from '../../modules/shipment/forward-shipment/CreateForwardShipment';
 import ReverseShipment from '../../modules/shipment/reverse-shipment/CreateReverseShipment';
 import DomesticPickup from '../../modules/shipment/pickup-requests/PickupRequestPage';
+import BulkUploadShipment from '../../modules/shipment/bulk-upload-shipment/BulkUploadShipment';
 
 function AppRoutes() {
 	return (
@@ -77,6 +78,10 @@ function AppRoutes() {
 							<Route
 								path="/fr-home/shipments/forward/create"
 								element={<ForwardShipment />}
+							/> 
+							<Route
+								path="/fr-home/shipments/forward/bulk-upload"
+								element={<BulkUploadShipment />}
 							/>
 							<Route
 								path="/fr-home/shipments/reverse/create"

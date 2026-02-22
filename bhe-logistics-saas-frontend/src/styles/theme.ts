@@ -1,6 +1,11 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
+	 palette: {
+    primary: {
+      main: "#0d2868",
+    },
+  },
 	components: {
 			/* 🔹 Base label typography */
 		MuiFormLabel: {

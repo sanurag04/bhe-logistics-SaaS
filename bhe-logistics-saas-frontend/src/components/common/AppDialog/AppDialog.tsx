@@ -30,6 +30,13 @@ const AppDialog = ({
       open={open}
       maxWidth={maxWidth}
       fullWidth
+      scroll="paper"
+      PaperProps={{
+    sx: {
+      width: 600,   
+      maxWidth: "90vw",
+    },
+  }}
       disableEscapeKeyDown
       onClose={(_, reason) => {
         if (reason === 'backdropClick') return;

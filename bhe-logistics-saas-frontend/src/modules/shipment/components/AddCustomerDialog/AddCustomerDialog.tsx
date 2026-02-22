@@ -1,12 +1,8 @@
 /** @format */
-import {
-	Grid,
-	TextField,
-	Button,
-	InputAdornment,
-	Typography,
-} from '@mui/material';
+import { Grid, TextField, InputAdornment, Typography } from '@mui/material';
 import AppDialog from '../../../../components/common/AppDialog/AppDialog';
+import StickyFooter from '../../../../components/common/StickyFooter';
+import { useState } from 'react';
 
 interface AddCustomerDialogProps {
 	open: boolean;
@@ -14,6 +10,29 @@ interface AddCustomerDialogProps {
 }
 
 const AddCustomerDialog = ({ open, onClose }: AddCustomerDialogProps) => {
+	const [formData] = useState({
+		firstName: '',
+		lastName: '',
+		email: '',
+		phone: '',
+		addressLine1: '',
+		addressLine2: '',
+		pincode: '',
+		state: '',
+		city: '',
+	});
+
+	const handleSubmit = (onSubmit: (data: typeof formData) => void) => {
+		return () => {
+			onSubmit(formData);
+		};
+	};
+
+	const onSubmit = (data: typeof formData) => {
+		console.log('Customer data:', data);
+		onClose();
+	};
+
 	return (
 		<AppDialog
 			open={open}
@@ -136,17 +155,13 @@ const AddCustomerDialog = ({ open, onClose }: AddCustomerDialogProps) => {
 					/>
 				</Grid>
 
-				{/* Footer Actions */}
-				<Grid
-					size={{ xs: 12 }}
-					display="flex"
-					justifyContent="flex-end"
-					gap={2}
-					mt={2}>
-					<Button variant="outlined" onClick={onClose}>
-						Cancel
-					</Button>
-					<Button variant="contained">Add Customer</Button>
+				<Grid size={{ xs: 12 }}>
+					<StickyFooter
+						primaryLabel="Add Customer"
+						secondaryLabel="Cancel"
+						onSecondaryClick={onClose}
+						onPrimaryClick={handleSubmit(onSubmit)}
+					/>
 				</Grid>
 			</Grid>
 		</AppDialog>
